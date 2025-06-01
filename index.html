@@ -26,6 +26,13 @@
         position: relative;
       }
 
+      @media (max-width: 768px) {
+        video {
+          width: 100vw;
+          height: auto;
+        }
+      }
+
       .gallery-container {
         display: flex;
         overflow-x: auto;
@@ -42,7 +49,22 @@
         cursor: zoom-in;
       }
 
-      /* All links start gray */
+      .gallery-arrows {
+        display: none;
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      @media (max-width: 768px) {
+        .gallery-arrows {
+          display: flex;
+        }
+      }
+
       a.photos,
       a.email,
       a.vimeo,
@@ -52,7 +74,6 @@
         text-decoration: none;
       }
 
-      /* Hover colors */
       a.photos:hover {
         color: rgb(255, 99, 99);
       }
@@ -73,16 +94,14 @@
 
   <body style="background-color: rgb(190, 238, 255)">
     <br /><br /><br /><br /><br /><br /><br /><br />
-
     ted martinez piccininni
-
     <br /><br /><br>
 
-  <video autoplay muted loop playsinline class="small-video">
-    <source src="media/4wbs.mp4" type="video/mp4">
-  </video>
+    <video autoplay muted loop playsinline class="small-video">
+      <source src="media/4wbs.mp4" type="video/mp4" />
+    </video>
 
-  <br><br><br>
+    <br /><br /><br />
 
     <a href="#" class="photos" onclick="toggleGallery()">photos</a>
 
@@ -94,8 +113,14 @@
         <img src="media/subwaywoman.jpg" alt="photo4" />
         <img src="media/view.jpg" alt="photo5" />
         <img src="media/ghouse.png" alt="photo6" />
-        <img src="media/nick1.jpg" alt="photo6" />
-        <img src="media/nick2.jpg" alt="photo6" />
+        <img src="media/nick1.jpg" alt="photo7" />
+        <img src="media/nick2.jpg" alt="photo8" />
+      </div>
+
+      <!-- Mobile-only arrows -->
+      <div class="gallery-arrows">
+        <span onclick="scrollGallery(-1)">← Prev</span>
+        <span onclick="scrollGallery(1)">Next →</span>
       </div>
     </div>
 
@@ -140,51 +165,45 @@
     <h6></h6>
 
     <script>
-     function toggleGallery() {
-    const gallery = document.getElementById("gallery");
-    gallery.style.display = gallery.style.display === "none" ? "block" : "none";
-  }
+      function toggleGallery() {
+        const gallery = document.getElementById("gallery");
+        gallery.style.display = gallery.style.display === "none" ? "block" : "none";
+      }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightbox-img");
-    const galleryImages = Array.from(document.querySelectorAll(".gallery-container img"));
-    let currentIndex = -1;
+      function scrollGallery(direction) {
+        const container = document.querySelector(".gallery-container");
+        const scrollAmount = 220;
+        container.scrollBy({
+          left: direction * scrollAmount,
+          behavior: "smooth",
+        });
+      }
 
-    // Show lightbox with clicked image
-    galleryImages.forEach((img, index) => {
-      img.addEventListener("click", () => {
-        lightboxImg.src = img.src;
-        lightbox.style.display = "flex";
-        currentIndex = index;
-      });
-    });
+      document.addEventListener("DOMContentLoaded", () => {
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const galleryImages = Array.from(document.querySelectorAll(".gallery-container img"));
+        let currentIndex = -1;
 
-    // Close lightbox on click
-    lightbox.addEventListener("click", () => {
-      lightbox.style.display = "none";
-      lightboxImg.src = "";
-      currentIndex = -1;
-    });
+        galleryImages.forEach((img, index) => {
+          img.addEventListener("click", () => {
+            lightboxImg.src = img.src;
+            lightbox.style.display = "flex";
+            currentIndex = index;
+          });
+        });
 
-    // Navigate with arrow keys
-    document.addEventListener("keydown", (event) => {
-      if (lightbox.style.display === "flex") {
-        if (event.key === "ArrowRight") {
-          currentIndex = (currentIndex + 1) % galleryImages.length;
-          lightboxImg.src = galleryImages[currentIndex].src;
-        } else if (event.key === "ArrowLeft") {
-          currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-          lightboxImg.src = galleryImages[currentIndex].src;
-        } else if (event.key === "Escape") {
+        lightbox.addEventListener("click", () => {
           lightbox.style.display = "none";
           lightboxImg.src = "";
           currentIndex = -1;
-        }
-      }
-    });
-  });
-    </script>
-  </body>
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (lightbox.style.display === "flex") {
+            if (event.key === "ArrowRight") {
+              currentIndex = (currentIndex + 1) % galleryImages.length;
+              lightboxImg.src = galleryImages[cur]()
+
 </html>
 
