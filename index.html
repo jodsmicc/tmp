@@ -117,7 +117,6 @@
         <img src="media/nick2.jpg" alt="photo8" />
       </div>
 
-      <!-- Mobile-only arrows -->
       <div class="gallery-arrows">
         <span onclick="scrollGallery(-1)">← Prev</span>
         <span onclick="scrollGallery(1)">Next →</span>
@@ -151,9 +150,7 @@
 
     <a href="mailto:podticc@yahoo.com" class="email">email</a>
     <br />
-    <a href="https://vimeo.com/user241505498" target="_blank" class="vimeo"
-      >vimeo</a
-    >
+    <a href="https://vimeo.com/user241505498" target="_blank" class="vimeo">vimeo</a>
     <br />
     <a
       href="https://www.instagram.com/ted999999999?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
@@ -200,23 +197,21 @@
         });
 
         document.addEventListener("keydown", (event) => {
-  if (lightbox.style.display === "flex") {
-    if (event.key === "ArrowRight") {
-      currentIndex = (currentIndex + 1) % galleryImages.length;
-      lightboxImg.src = galleryImages[currentIndex].src;
-    } else if (event.key === "ArrowLeft") {
-      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-      lightboxImg.src = galleryImages[currentIndex].src;
-    } else if (event.key === "Escape") {
-      lightbox.style.display = "none";
-      lightboxImg.src = "";
-      currentIndex = -1;
-    }
-  }
-});
+          if (lightbox.style.display === "flex") {
+            if (event.key === "ArrowRight") {
+              currentIndex = (currentIndex + 1) % galleryImages.length;
+              lightboxImg.src = galleryImages[currentIndex].src;
+            } else if (event.key === "ArrowLeft") {
+              currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+              lightboxImg.src = galleryImages[currentIndex].src;
+            } else if (event.key === "Escape") {
+              lightbox.style.display = "none";
+              lightboxImg.src = "";
+              currentIndex = -1;
+            }
+          }
         });
       });
     </script>
-
   </body>
 </html>
