@@ -7,7 +7,6 @@
 
     <style>
       body {
-        height: 100;
         margin: 0;
         display: flex;
         justify-content: center;
@@ -15,6 +14,11 @@
         flex-direction: column;
         background-color: aliceblue;
         font-family: sans-serif;
+      }
+
+      .main-content {
+        margin-top: 200px; /* desktop top spacing */
+        text-align: center;
       }
 
       video {
@@ -30,6 +34,20 @@
         video {
           width: 100vw;
           height: auto;
+        }
+        
+        .main-content {
+          margin-top: 50px; /* smaller top margin on mobile */
+        }
+
+        .gallery-arrows {
+          display: flex;
+        }
+
+        /* Smaller buttons on mobile */
+        .gallery-arrows span {
+          font-size: 14px;
+          padding: 5px 8px;
         }
       }
 
@@ -57,12 +75,6 @@
         font-size: 18px;
         font-weight: bold;
         color: #333;
-      }
-
-      @media (max-width: 768px) {
-        .gallery-arrows {
-          display: flex;
-        }
       }
 
       a.photos,
@@ -93,73 +105,69 @@
   </head>
 
   <body style="background-color: rgb(190, 238, 255)">
-    <br /><br /><br /><br /><br /><br /><br /><br />
-    ted martinez piccininni
-    <br /><br /><br>
+    <div class="main-content">
+      ted martinez piccininni
 
-    <video autoplay muted loop playsinline class="small-video">
-      <source src="media/4wbs.mp4" type="video/mp4" />
-    </video>
+      <video autoplay muted loop playsinline class="small-video">
+        <source src="media/4wbs.mp4" type="video/mp4" />
+      </video>
 
-    <br /><br /><br />
+      <a href="#" class="photos" onclick="toggleGallery()">photos</a>
 
-    <a href="#" class="photos" onclick="toggleGallery()">photos</a>
+      <div id="gallery" style="display: none">
+        <div class="gallery-container">
+          <img src="media/manchair.png" alt="photo1" />
+          <img src="media/redman.jpg" alt="photo2" />
+          <img src="media/suitman.jpg" alt="photo3" />
+          <img src="media/subwaywoman.jpg" alt="photo4" />
+          <img src="media/view.jpg" alt="photo5" />
+          <img src="media/ghouse.png" alt="photo6" />
+          <img src="media/nick1.jpg" alt="photo7" />
+          <img src="media/nick2.jpg" alt="photo8" />
+        </div>
 
-    <div id="gallery" style="display: none">
-      <div class="gallery-container">
-        <img src="media/manchair.png" alt="manchair" />
-        <img src="media/redman.jpg" alt="redman" />
-        <img src="media/suitman.jpg" alt="suitman" />
-        <img src="media/subwaywoman.jpg" alt="subwaywoman" />
-        <img src="media/view.jpg" alt="view" />
-        <img src="media/ghouse.png" alt="gavinshouse" />
-        <img src="media/nick1.jpg" alt="nick1" />
-        <img src="media/nick2.jpg" alt="nick2" />
+        <div class="gallery-arrows">
+          <span onclick="scrollGallery(-1)">← Prev</span>
+          <span onclick="scrollGallery(1)">Next →</span>
+        </div>
       </div>
 
-      <div class="gallery-arrows">
-        <span onclick="scrollGallery(-1)">← Prev</span>
-        <span onclick="scrollGallery(1)">Next →</span>
+      <div
+        id="lightbox"
+        style="
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.8);
+          justify-content: center;
+          align-items: center;
+          z-index: 1000;
+        "
+      >
+        <img
+          id="lightbox-img"
+          src=""
+          style="max-width: 90%; max-height: 90%;"
+          alt="enlarged photo"
+        />
       </div>
+
+      <a href="mailto:podticc@yahoo.com" class="email">email</a>
+      <br />
+      <a href="https://vimeo.com/user241505498" target="_blank" class="vimeo"
+        >vimeo</a
+      >
+      <br />
+      <a
+        href="https://www.instagram.com/ted999999999?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+        target="_blank"
+        class="instagram"
+        >instagram</a
+      >
     </div>
-
-    <div
-      id="lightbox"
-      style="
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-      "
-    >
-      <img
-        id="lightbox-img"
-        src=""
-        style="max-width: 90%; max-height: 90%;"
-        alt="enlarged photo"
-      />
-    </div>
-
-    <br />
-
-    <a href="mailto:podticc@yahoo.com" class="email">email</a>
-    <br />
-    <a href="https://vimeo.com/user241505498" target="_blank" class="vimeo">vimeo</a>
-    <br />
-    <a
-      href="https://www.instagram.com/ted999999999?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-      target="_blank"
-      class="instagram"
-      >instagram</a
-    >
-
-    <h6></h6>
 
     <script>
       function toggleGallery() {
@@ -213,5 +221,8 @@
         });
       });
     </script>
+  </body>
+</html>
+
   </body>
 </html>
